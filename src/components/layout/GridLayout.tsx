@@ -4,14 +4,14 @@ import GridCell from '../grid/GridCell';
 
 
 const gridItems = [
-  { imageSrc: "https://via.placeholder.com/150", title: "엔샵", description: ["#프로그래밍", "#공모전"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "한손", description: ["#만화"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "Title 3", description: ["Description"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "Title 4", description: ["Description"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "Title 5", description: ["Description"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "Title 6", description: ["Description"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "Title 7", description: ["Description"],urlSrc:"/client-application" },
-  { imageSrc: "https://via.placeholder.com/150", title: "Title 8", description: ["Description"],urlSrc:"/client-application" },
+  { imageSrc: "/img/company_image_example1.jpeg", logoSrc:"/img/company_logo_example1.png", title: "엔샵", description: ["D-3", ],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "한손", description: ["D-11"],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "Title 3", description: ["Description"],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "Title 4", description: ["Description"],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "Title 5", description: ["Description"],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "Title 6", description: ["Description"],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "Title 7", description: ["Description"],urlSrc:"/club-detail" },
+  { imageSrc: "https://via.placeholder.com/150",logoSrc:"/img/company_logo_example1.png", title: "Title 8", description: ["Description"],urlSrc:"/club-detail" },
 ]; 
 
 const GridLayout: React.FC = () => {
@@ -22,6 +22,7 @@ const GridLayout: React.FC = () => {
           <GridCell
             key={index}
             imageSrc={item.imageSrc}
+            logoSrc={item.logoSrc}
             title={item.title}
             description={item.description}
             urlSrc={item.urlSrc}
