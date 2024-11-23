@@ -3,9 +3,11 @@
 import React from 'react'; 
 import GridLayout from '../components/layout/GridLayout'; 
 import TagCheckBox from '../components/checkbox/TagCheckBox';
-import SearchBar from '../components/search/SearchBar';
+import SearchBar from '../components/search/SearchBar'; 
+
 export default function Home() {  
   return (
+    
     <div className="bg-white min-h-screen relative">
       <main className="p-4 flex">
 
