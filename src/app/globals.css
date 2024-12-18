@@ -25,3 +25,23 @@ body {
     text-wrap: balance;
   }
 }
+
+@font-face {
+  font-family: "pretendard-bold";
+  src: url("../fonts/Pretendard-Bold.woff");
+}
+
+@font-face {
+  font-family: "pretendard-regular";
+  src: url("../fonts/Pretendard-Regular.woff");
+}
+
+@font-face {
+  font-family: "pretendard-extraBold";
+  src: url("../fonts/Pretendard-ExtraBold.woff");
+}
+
+@font-face {
+  font-family: "pretendard-semiBold";
+  src: url("../fonts/Pretendard-SemiBold.woff");
+}
