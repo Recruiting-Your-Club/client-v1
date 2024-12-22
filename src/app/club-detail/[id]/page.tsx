@@ -2,10 +2,10 @@
 
 import { useParams } from "next/navigation";
 import React from "react";
-import MainHeader from "../../../components/header/MainHeader"; 
+import MainHeader from "../../../components/header/MainHeader";
 import RecruitmentDetailCard from "../../../components/card/RecruitmentDetailCard";
-import clubData from "../../../data/clubData"; 
-import DetailHeader from "../../../components/header/detailHeader";
+import clubData from "../../../data/clubData";
+import DetailHeader from "../../../components/header/DetailHeader";
 import DetailImageCard from "../../../components/card/DetailImageCard";
 
 const ClubDetailPage = () => {
@@ -49,7 +49,12 @@ const ClubDetailPage = () => {
           {/* DetailHeader 컴포넌트에 배열로 데이터 전달 */}
           <div className="pt-5">
             <DetailHeader
-              headerData={["상세요강", "접수기간/방법", "자소서항목", "동아리정보"]}
+              headerData={[
+                "상세요강",
+                "접수기간/방법",
+                "자소서항목",
+                "동아리정보",
+              ]}
               onHeaderClick={handleHeaderClick}
             />
             <DetailImageCard imageSrc={club.posterImageSrc} />
