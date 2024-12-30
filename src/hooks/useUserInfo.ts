@@ -1,8 +1,10 @@
 import { create } from "zustand";
 
-interface userInfoType {
-  userId: string;
+//전역으로 userInfoType에 사용자 이름 설정
+
+export interface userInfoType {
   username: string;
+  accessToken: string;
 }
 
 interface UserInfoState {
@@ -14,7 +16,7 @@ interface UserInfoActions {
   deleteUserInfo: () => void;
 }
 
-const defaultState = { userId: "", username: "" };
+const defaultState = { username: "", accessToken: "" };
 
 const useUserInfo = create<UserInfoState & UserInfoActions>((set) => ({
   userInfo: defaultState,
@@ -26,4 +28,4 @@ const useUserInfo = create<UserInfoState & UserInfoActions>((set) => ({
   },
 }));
 
-export default useUserInfo;
+export { useUserInfo };

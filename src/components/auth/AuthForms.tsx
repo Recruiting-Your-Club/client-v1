@@ -1,7 +1,9 @@
 import { useState } from "react";
-
+import { login, register } from "@/services/authService";
+import { authManager } from "@/services/authManager";
+import { useUserInfo, userInfoType } from "@/hooks/useUserInfo";
 type FormData = {
-  id: string;
+  email: string;
   password: string;
   username?: string;
   studentNumber?: string;
@@ -10,11 +12,13 @@ type FormData = {
 export default function AuthForms() {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState<FormData>({
-    id: "",
+    email: "",
     password: "",
     username: "",
     studentNumber: "",
   });
+
+  const { setUserInfo } = useUserInfo();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,8 +26,49 @@ export default function AuthForms() {
   };
 
   //서버로 정보 보내는 함수
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      //로그인 관련 로직
+      if (isLogin) {
+        const response = await login(formData.email, formData.password);
+
+        //구조 분해 할당
+        const { token: accessToken, username } = response;
+        authManager.setAccessToken(accessToken);
+
+        // refreshToken 생기면 exToken 지우고 로직 수정
+        let exToken = authManager.getAccessToken();
+        if (exToken === null) {
+          exToken = "a";
+        }
+
+        //전역 상태 정보 저장
+        const userInfo: userInfoType = {
+          username: username,
+          accessToken: exToken,
+        };
+        setUserInfo(userInfo);
+
+        alert("로그인 성공");
+      }
+      //회원가입 관련 로직
+      else {
+        if (!formData.username) {
+          alert("이름을 입력해주세요.");
+          return;
+        }
+        await register(formData.username, formData.email, formData.password);
+        alert("회원가입 성공");
+      }
+    } catch (error: any) {
+      if (error.response && error.response.status === 409) {
+        alert("이미 사용 중인 이메일 주소입니다.");
+      } else {
+        alert(error.response && error.response.message);
+      }
+    }
   };
 
   return (
@@ -71,20 +116,20 @@ export default function AuthForms() {
               </div>
             )}
             <div>
-              <label htmlFor="id" className="sr-only">
-                아이디
+              <label htmlFor="email" className="sr-only">
+                이메일
               </label>
               <input
                 className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 ${
                   isLogin ? "rounded-t-md" : ""
                 } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-                id="id"
-                name="id"
-                type="text"
+                id="email"
+                name="email"
+                type="email"
                 required
-                value={formData.id}
+                value={formData.email}
                 onChange={onChange}
-                placeholder="아이디"
+                placeholder="이메일"
               ></input>
             </div>
             <div>
@@ -107,6 +152,7 @@ export default function AuthForms() {
           <div>
             <button
               type="submit"
+              onClick={() => handleSubmit}
               className="font-pretendard-regular text-base group relative w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               {isLogin ? "로그인" : "회원가입"}
