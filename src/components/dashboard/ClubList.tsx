@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Club } from "@/types/club";
 import ClubButton from "../button/ClubButton";
+import CreateClubButton from "../button/CreateClubButton";
 
 const clubs: Club[] = [
   {
@@ -26,15 +27,16 @@ const clubs: Club[] = [
 
 const ClubList = () => {
   return (
-    <div className="">
+    <div className="max-w-md w-full ">
       <div className="">
-        <h2 className="text-2xl font-pretendard-semiBold text-black">
+        <h2 className="pb-6 text-2xl font-pretendard-semiBold text-black">
           내 채널 목록
         </h2>
-        <div>
+        <div className="space-y-2">
           {clubs.map((club) => (
             <ClubButton key={club.id} club={club} />
           ))}
+          <CreateClubButton />
         </div>
       </div>
     </div>
