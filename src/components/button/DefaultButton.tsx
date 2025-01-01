@@ -15,7 +15,7 @@ const DefaultButton: React.FC<ButtonProps> = ({
     "px-4 py-2 rounded-md transition-colors font-pretendard-regular";
   const variantStyles = {
     default: "bg-indigo-500 text-white hover:bg-indigo-600",
-    ghost: "bg-transparent hover:bg-gray-100",
+    ghost: "bg-transparent hover:bg-gray-200",
   };
 
   return (
@@ -27,3 +27,5 @@ const DefaultButton: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export default DefaultButton;
