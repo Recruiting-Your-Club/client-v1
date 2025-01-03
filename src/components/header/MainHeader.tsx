@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React /*useEffect*/ from "react";
 import SearchBar from "../search/SearchBar";
 import Link from "next/link";
-import { userInfoType, useUserInfo } from "@/hooks/useUserInfo";
+import { /*userInfoType,*/ useUserInfo } from "@/hooks/useUserInfo";
 
 const MainHeader: React.FC = () => {
   const { userInfo, setUserInfo } = useUserInfo();
   const isLogin = !userInfo.accessToken;
 
-  // 더미 데이터 삽입 로직
-  const accessToken = "a";
-  const username = "b";
+  // //더미 데이터 삽입 로직
+  // const accessToken = "a";
+  // const username = "b";
 
-  useEffect(() => {
-    // 더미 데이터를 상태에 한 번만 설정
-    const userInfoType: userInfoType = {
-      accessToken: accessToken,
-      username: username,
-    };
-    setUserInfo(userInfoType);
-  }, [setUserInfo]);
-  //여기까지 더미데이터 설정 코드
+  // useEffect(() => {
+  //   // 더미 데이터를 상태에 한 번만 설정
+  //   const userInfoType: userInfoType = {
+  //     accessToken: accessToken,
+  //     username: username,
+  //   };
+  //   setUserInfo(userInfoType);
+  // }, [setUserInfo]);
+  // //여기까지 더미데이터 설정 코드
 
   return (
     <header className="sticky top-0 bg-white z-[1000] shadow-md">

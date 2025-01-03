@@ -1,7 +1,10 @@
+"use client";
+
 import { useState } from "react";
 import { login, register } from "@/services/authService";
 import { authManager } from "@/services/authManager";
 import { useUserInfo, userInfoType } from "@/hooks/useUserInfo";
+
 type FormData = {
   email: string;
   password: string;
@@ -33,9 +36,8 @@ export default function AuthForms() {
       //로그인 관련 로직
       if (isLogin) {
         const response = await login(formData.email, formData.password);
-
         //구조 분해 할당
-        const { token: accessToken, username } = response;
+        const { authorization: accessToken } = response;
         authManager.setAccessToken(accessToken);
 
         // refreshToken 생기면 exToken 지우고 로직 수정
@@ -46,7 +48,7 @@ export default function AuthForms() {
 
         //전역 상태 정보 저장
         const userInfo: userInfoType = {
-          username: username,
+          username: "a",
           accessToken: exToken,
         };
         setUserInfo(userInfo);

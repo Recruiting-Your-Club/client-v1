@@ -9,19 +9,19 @@ const clubs: Club[] = [
     id: "1",
     name: "엔샵",
     description: "세종대학교 SW동아리",
-    imageUrl: "/placeholder.svg?height=40&width=40",
+    imageUrl: "../img/club_image_example1.jpeg",
   },
   {
     id: "2",
     name: "그리디",
     description: "세종대학교 SW동아리",
-    imageUrl: "/placeholder.svg?height=40&width=40",
+    imageUrl: "../img/club_image_example1.jpeg",
   },
   {
     id: "3",
     name: "EnSharp",
     description: "제로베이스 SW 개발동아리 EnSharp 입니다.",
-    imageUrl: "/placeholder.svg?height=40&width=40",
+    imageUrl: "../img/club_image_example1.jpeg",
   },
 ];
 
@@ -29,7 +29,7 @@ const ClubList = () => {
   return (
     <div className="max-w-md w-full ">
       <div className="">
-        <h2 className="pb-6 text-2xl font-pretendard-semiBold text-black">
+        <h2 className="pb-6 text-2xl font-pretendard-bold text-black">
           내 채널 목록
         </h2>
         <div className="space-y-2">
