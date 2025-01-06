@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
-import DefaultButton from "./DefaultButton";
+import DefaultButton from "../ui/DefaultButton";
 
 const CreateClubButton = () => {
   const router = useRouter();

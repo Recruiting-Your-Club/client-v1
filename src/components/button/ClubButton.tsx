@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import type { Club } from "@/types/club";
-import DefaultButton from "./DefaultButton";
+import DefaultButton from "../ui/DefaultButton";
 
 interface ClubButtonProps {
   club: Club;
