@@ -3,19 +3,20 @@
 import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import DefaultButton from "../ui/DefaultButton";
+import { Button } from "../ui/button";
 
 const CreateClubButton = () => {
   const router = useRouter();
 
   return (
-    <DefaultButton
+    <Button
       variant="ghost"
-      className="w-full items-center flex gap-3 text-indigo-500 justify-start text-xl"
+      className="w-full items-center flex gap-3 text-indigo-500 hover:text-indigo-500 justify-start text-xl"
       onClick={() => router.push("/channels/create")}
     >
-      <Plus size={40} className="rounded-2xl bg-indigo-200 text-indigo-500" />
+      <Plus className="h-7 w-7 rounded-2xl bg-indigo-200 text-indigo-500 " />
       <span>새 채널 만들기</span>
-    </DefaultButton>
+    </Button>
   );
 };
 

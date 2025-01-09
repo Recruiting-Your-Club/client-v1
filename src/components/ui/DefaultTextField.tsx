@@ -1,5 +1,3 @@
-"use client";
-
 import { InputHTMLAttributes, forwardRef } from "react";
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {

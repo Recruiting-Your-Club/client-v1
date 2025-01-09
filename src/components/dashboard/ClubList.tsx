@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Club } from "@/types/club";
 import ClubButton from "../button/ClubButton";
 import CreateClubButton from "../button/CreateClubButton";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 
 const clubs: Club[] = [
   {
@@ -27,19 +28,17 @@ const clubs: Club[] = [
 
 const ClubList = () => {
   return (
-    <div className="max-w-md w-full ">
-      <div className="">
-        <h2 className="pb-6 text-2xl font-pretendard-bold text-black">
-          내 채널 목록
-        </h2>
-        <div className="space-y-2">
-          {clubs.map((club) => (
-            <ClubButton key={club.id} club={club} />
-          ))}
-          <CreateClubButton />
-        </div>
-      </div>
-    </div>
+    <Card className="max-w-md w-full ">
+      <CardHeader className="">
+        <CardTitle className="text-xl">내 동아리 목록</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {clubs.map((club) => (
+          <ClubButton key={club.id} club={club} />
+        ))}
+        <CreateClubButton />
+      </CardContent>
+    </Card>
   );
 };
 
