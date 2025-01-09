@@ -1,8 +1,8 @@
 import React from "react";
 
 interface ImageProps {
-  imageSrc: string; // 이미지 소스
-  altText?: string; // 대체 텍스트 (선택 사항)
+  imageSrc: string;  
+  altText?: string;  
 }
 
 const DetailImageCard: React.FC<ImageProps> = ({ imageSrc, altText }) => {

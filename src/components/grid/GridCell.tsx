@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
+import FavoriteButton from "../button/FavoriteButton";
 
 interface GridCellProps {
-  id: string;  
+  id: string;
   imageSrc: string;
   logoSrc: string;
   title: string;
   daysLeft: string;
   description: string[];
-  school: string; 
+  school: string;
   tag: string;
+  isFavorited: boolean; // 즐겨찾기 상태
+  onToggleFavorite: (id: string) => void; // 즐겨찾기 토글 핸들러
 }
 
 const GridCell: React.FC<GridCellProps> = ({
@@ -19,11 +22,12 @@ const GridCell: React.FC<GridCellProps> = ({
   title,
   daysLeft,
   description,
-  school, 
+  school,
   tag,
+  isFavorited,
+  onToggleFavorite,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(false);
 
   return (
     <div
@@ -31,25 +35,25 @@ const GridCell: React.FC<GridCellProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        height: '30vh',
+        height: "30vh",
       }}
     >
       <div
         className={`bg-white border border-gray-300 rounded-lg flex flex-col cursor-pointer transition-all duration-300 ${
-          isHovered ? 'absolute top-0 left-0 w-full z-10 shadow-lg' : ''
+          isHovered ? "absolute top-0 left-0 w-full z-10 shadow-lg" : ""
         }`}
         style={{
-          height: isHovered ? '60vh' : '30vh',
-          position: isHovered ? 'absolute' : 'relative',
+          height: isHovered ? "650px" : "300px",
+          position: isHovered ? "absolute" : "relative",
         }}
       >
         {/* 이미지 영역 */}
         <div className="relative w-full">
           <div
             className={`w-full transition-all duration-300 ${
-              isHovered ? 'h-80' : 'h-40'
+              isHovered ? "h-80" : "h-40"
             }`}
-            style={{ aspectRatio: '16 / 9' }}
+            style={{ aspectRatio: "16 / 9" }}
           >
             <img
               src={imageSrc}
@@ -62,10 +66,10 @@ const GridCell: React.FC<GridCellProps> = ({
           <div
             className="absolute bottom-0 left-5 bg-white flex items-center justify-center"
             style={{
-              width: '40%',
-              height: '50px',
-              borderTopLeftRadius: '8px',
-              borderTopRightRadius: '8px',
+              width: "40%",
+              height: "50px",
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px",
             }}
           >
             <img
@@ -76,25 +80,11 @@ const GridCell: React.FC<GridCellProps> = ({
           </div>
         </div>
 
-        {/* 즐겨찾기 */}
-        <button
-          className={`absolute top-2 right-2 p-2 rounded-full shadow-lg transition-colors duration-300 ${
-            isFavorited ? 'bg-yellow-400' : 'bg-gray-300'
-          }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsFavorited(!isFavorited);
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-5 h-5 text-white"
-          >
-            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-          </svg>
-        </button>
+        {/* 즐겨찾기 버튼 */}
+        <FavoriteButton
+          isFavorited={isFavorited} // 즐겨찾기 상태 전달
+          onClick={() => onToggleFavorite(id)} // 클릭 핸들러 전달
+        />
 
         {/* 텍스트 설명 영역 */}
         <div className="flex-1 flex flex-col justify-start mt-5 mb-5 ml-5 mr-6">
@@ -106,7 +96,9 @@ const GridCell: React.FC<GridCellProps> = ({
           {/* 추가 텍스트 영역 */}
           {isHovered && (
             <div className="flex flex-col items-start gap-3 mt-1">
-              <span className="block text-base text-green-600 font-medium font-bold">{tag}</span>
+              <span className="block text-base text-green-600 font-medium font-bold">
+                {tag}
+              </span>
 
               <div className="w-full border-b border-gray-300" />
 
@@ -124,7 +116,7 @@ const GridCell: React.FC<GridCellProps> = ({
 
         {/* 버튼 영역 */}
         {isHovered && (
-          <div className="absolute bottom-6 left-5 right-5 flex flex-col items-center gap-3">
+          <div className="absolute bottom-3.5 left-5 right-5 flex flex-col items-center gap-3">
             <Link href={`club-detail/${id}`}>
               <button className="bg-[#02255A] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#014080] transition">
                 공고 바로가기

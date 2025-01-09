@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import FavoriteButton from "../button/FavoriteButton";
 
 interface RecruitmentDetailCardProps {
+  id: string; // id 추가
   imageSrc: string;
   logoSrc: string;
   title: string;
@@ -8,9 +10,12 @@ interface RecruitmentDetailCardProps {
   description: string[];
   school: string;
   tag: string;
+  isFavorited: boolean; // 즐겨찾기 상태
+  onToggleFavorite: (id: string) => void; // 즐겨찾기 토글 핸들러
 }
 
 const RecruitmentDetailCard: React.FC<RecruitmentDetailCardProps> = ({
+  id,
   imageSrc,
   logoSrc,
   title,
@@ -18,9 +23,9 @@ const RecruitmentDetailCard: React.FC<RecruitmentDetailCardProps> = ({
   description,
   school,
   tag,
+  isFavorited,
+  onToggleFavorite,
 }) => {
-  const [isFavorited, setIsFavorited] = useState(false);
-
   return (
     <div className="relative flex flex-col lg:flex-row bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden max-w-6xl mx-auto">
       {/* 이미지 영역 */}
@@ -46,27 +51,14 @@ const RecruitmentDetailCard: React.FC<RecruitmentDetailCardProps> = ({
       </div>
 
       {/* 텍스트 영역 */}
-      <div className="flex flex-col w-full lg:w-3/5 p-6 space-y-6">
-        {/* 즐겨찾기 버튼 */}
-        <div className="flex justify-end">
-          <button
-            className={`p-3 rounded-full shadow-md transition-colors duration-300 ${
-              isFavorited ? "bg-yellow-400" : "bg-gray-300"
-            }`}
-            onClick={() => setIsFavorited(!isFavorited)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 text-white"
-            >
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-          </button>
+      <div className="flex flex-col w-full lg:w-3/5 p-6 space-y-6"> 
+        <div className="flex justify-end pt-10">
+          <FavoriteButton
+            isFavorited={isFavorited}  
+            onClick={() => onToggleFavorite(id)}  
+          />
         </div>
-
-        {/* 텍스트 내용 */}
+ 
         <div>
           <h3 className="text-2xl font-bold mb-4">{title}</h3>
           <div className="text-md text-gray-500 mb-2">{daysLeft}</div>
@@ -79,8 +71,7 @@ const RecruitmentDetailCard: React.FC<RecruitmentDetailCardProps> = ({
             ))}
           </div>
         </div>
-
-        {/* 지원하기 버튼 */}
+ 
         <div>
           <button className="w-full bg-[#02255A] text-white py-2 rounded-lg text-sm font-semibold hover:bg-[#014080] transition">
             지원하기
