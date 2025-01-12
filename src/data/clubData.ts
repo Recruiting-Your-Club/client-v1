@@ -17,6 +17,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "hanson",
@@ -36,6 +38,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"미술",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "D",
@@ -55,6 +59,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "F",
@@ -74,6 +80,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "A",
@@ -93,6 +101,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "E",
@@ -112,6 +122,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "G",
@@ -131,6 +143,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
   {
     id: "V",
@@ -150,6 +164,8 @@ const clubData = [
     memberCount: 25,
     awards: ["2019년 공모전 대상", "2021년 최우수 동아리"],
     major:"개발",
+    startDate: "2024.12.23(월)",
+    endDate: "2025.01.23(목)",
   },
 ];
 

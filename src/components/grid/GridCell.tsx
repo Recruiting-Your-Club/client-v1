@@ -11,8 +11,8 @@ interface GridCellProps {
   description: string[];
   school: string;
   tag: string;
-  isFavorited: boolean; // 즐겨찾기 상태
-  onToggleFavorite: (id: string) => void; // 즐겨찾기 토글 핸들러
+  isFavorited: boolean;  
+  onToggleFavorite: (id: string) => void;  
 }
 
 const GridCell: React.FC<GridCellProps> = ({
@@ -82,8 +82,8 @@ const GridCell: React.FC<GridCellProps> = ({
 
         {/* 즐겨찾기 버튼 */}
         <FavoriteButton
-          isFavorited={isFavorited} // 즐겨찾기 상태 전달
-          onClick={() => onToggleFavorite(id)} // 클릭 핸들러 전달
+          isFavorited={isFavorited}  
+          onClick={() => onToggleFavorite(id)}  
         />
 
         {/* 텍스트 설명 영역 */}

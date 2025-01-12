@@ -1,25 +1,52 @@
 "use client";
 
 import { useParams } from "next/navigation";
-<<<<<<< Updated upstream
-import React from "react";
-import MainHeader from "../../../components/header/MainHeader"; 
-=======
 import React, { useEffect, useRef, useState } from "react";
 import MainHeader from "../../../components/header/MainHeader";
->>>>>>> Stashed changes
 import RecruitmentDetailCard from "../../../components/card/RecruitmentDetailCard";
-import clubData from "../../../data/clubData"; 
+import clubData from "../../../data/clubData";
 import DetailHeader from "../../../components/header/detailHeader";
 import DetailImageCard from "../../../components/card/DetailImageCard";
 import DetailPeriodCard from "../../../components/card/DetailPeriodCard";
 import DetailQuestionsCard from "@/components/card/DetailQuestionsCard";
 import DetailClubIntroCard from "@/components/card/DetailClubIntroCard";
 
+const HEADER_DATA = ["상세요강", "접수기간", "자소서항목", "동아리정보"];
+
 const ClubDetailPage = () => {
   const params = useParams();
   const id = params.id;
   const club = clubData.find((item) => item.id === id);
+
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  const sectionsRef = useRef<Record<string, HTMLDivElement | null>>({
+    details: null,
+    period: null,
+    questions: null,
+    info: null,
+  });
+
+  useEffect(() => {
+    setFavorites(getSavedFavorites());
+  }, []);
+
+  const getSavedFavorites = () => {
+    return JSON.parse(localStorage.getItem("favorites") || "[]");
+  };
+
+  const toggleFavorite = (id: string) => {
+    const updatedFavorites = favorites.includes(id)
+      ? favorites.filter((favId) => favId !== id)
+      : [...favorites, id];
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+  const scrollToSection = (key: string) => {
+    const section = sectionsRef.current[key];
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   if (!club) {
     return (
@@ -28,39 +55,6 @@ const ClubDetailPage = () => {
       </div>
     );
   }
- 
-  const [favorites, setFavorites] = useState<string[]>([]);
-
-  // 로컬 스토리지 로드
-  useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setFavorites(savedFavorites);
-  }, []);
- 
-  const toggleFavorite = (id: string) => {
-    const updatedFavorites = favorites.includes(id)
-      ? favorites.filter((favId: string) => favId !== id)  
-      : [...favorites, id];  
-
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));  
-  };
-
-  //헤더 버튼 누를 시 위치 이동 위한 sectionsRef
-  const sectionsRef = {
-    details: useRef<HTMLDivElement>(null),
-    period: useRef<HTMLDivElement>(null),
-    questions: useRef<HTMLDivElement>(null),
-    info: useRef<HTMLDivElement>(null),
-  };
-
-  const handleHeaderClick = (index: number) => {
-    const sectionKeys = ["details", "period", "questions", "info"];
-    const selectedSection = sectionsRef[sectionKeys[index]];
-    if (selectedSection?.current) {
-      selectedSection.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -78,37 +72,28 @@ const ClubDetailPage = () => {
             tag={club.tag}
             school={club.school}
             daysLeft={club.daysLeft}
-            isFavorited={favorites.includes(club.id)}  
-            onToggleFavorite={toggleFavorite}  
+            isFavorited={favorites.includes(club.id)}
+            onToggleFavorite={toggleFavorite}
           />
-          <div className="pt-10">
-            <DetailHeader
-<<<<<<< Updated upstream
-              headerData={["상세요강", "접수기간/방법", "자소서항목", "동아리정보"]}
-=======
-              headerData={["상세요강", "접수기간", "자소서항목", "동아리정보"]}
->>>>>>> Stashed changes
-              onHeaderClick={handleHeaderClick}
-            />
 
-            <div ref={sectionsRef.details}>
+          <div className="pt-10">
+            <DetailHeader headerData={HEADER_DATA} onHeaderClick={(index) => scrollToSection(HEADER_DATA[index])} />
+
+            <div ref={(el) => (sectionsRef.current.details = el)}>
               <DetailImageCard imageSrc={club.posterImageSrc} />
             </div>
 
-            <div ref={sectionsRef.period} className="pt-5">
+            <div ref={(el) => (sectionsRef.current.period = el)} className="pt-5">
               <div className="pt-10 p-3 text-2xl font-semibold">접수기간</div>
-              <DetailPeriodCard
-                startDate="2024.12.23(월)"
-                endDate="2025.01.23(목)"
-              />
+              <DetailPeriodCard startDate={club.startDate} endDate={club.endDate} />
             </div>
 
-            <div ref={sectionsRef.questions} className="pt-5">
+            <div ref={(el) => (sectionsRef.current.questions = el)} className="pt-5">
               <div className="pt-10 p-3 text-2xl font-semibold">자소서항목</div>
               <DetailQuestionsCard questions={club.questions} />
             </div>
 
-            <div ref={sectionsRef.info} className="pt-5">
+            <div ref={(el) => (sectionsRef.current.info = el)} className="pt-5">
               <div className="pt-10 p-3 text-2xl font-semibold">동아리정보</div>
               <DetailClubIntroCard
                 title={club.title}
