@@ -1,45 +1,86 @@
-import { ChevronDown } from "lucide-react";
-import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
+"use client";
+
+import { ChevronDown, Home, SquareTerminal } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "../ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
 } from "../ui/sidebar";
+import { Club } from "@/types/club";
+import { useParams, useRouter } from "next/navigation";
+import { getFirstCharacter } from "@/utils/stringUtils";
+import Link from "next/link";
+import ClubSwitcher from "./ClubSwitcher";
+import { notices } from "@/data/notices";
+import { userData } from "@/data/userData";
+import NoticeManager from "./NoticeManager";
+import NavUser from "./NavUser";
 
-const ClubSidebar = () => {
+//백에 동아리의 id값과 이름, 정보 넘겨달라고 얘기
+
+const clubs: Club[] = [
+  {
+    id: "1",
+    name: "엔샵",
+    description: "세종대학교 SW동아리",
+    imageUrl: "../img/club_image_example1.jpeg",
+  },
+  {
+    id: "2",
+    name: "그리디",
+    description: "세종대학교 SW동아리",
+    imageUrl: "../img/club_image_example1.jpeg",
+  },
+  {
+    id: "3",
+    name: "EnSharp",
+    description: "제로베이스 SW 개발동아리 EnSharp 입니다.",
+    imageUrl: "../img/club_image_example1.jpeg",
+  },
+];
+
+const ClubSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
+  const router = useRouter();
+
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
+        <ClubSwitcher clubs={clubs} />
+      </SidebarHeader>
+      <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton size="lg">
-                  <div className="flex aspect-square size-12 items-center justify-center rounded-lg bg-sidebar-primary">
-                    <span className="text-2xl text-sidebar-primary-foreground">
-                      E
-                      {/** 여기는 동아리 이니셜 아니면 이미지 박는게 좋을 듯? */}
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-0.5 pl-2">
-                    <span className="text-xl font-pretendard-semiBold">
-                      En#
-                    </span>
-                    <span className="text-sm font-pretendard-regular text-gray-600">
-                      it/소프트웨어
-                    </span>
-                  </div>
-                  <ChevronDown className="ml-auto size-10 " />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-            </DropdownMenu>
+            <SidebarMenuButton size="lg" className="h-16" asChild>
+              <Link href="#">
+                <Home
+                  className="ml-2"
+                  style={{ width: "24px", height: "24px" }}
+                />
+                <span className="font-pretendard-semiBold text-xl ml-2">
+                  모집 공고
+                </span>
+              </Link>
+            </SidebarMenuButton>
+            <SidebarSeparator />
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent></SidebarContent>
+        <NoticeManager notices={notices} />
+      </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={userData} />
+      </SidebarFooter>
     </Sidebar>
   );
 };
