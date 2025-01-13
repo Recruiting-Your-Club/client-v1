@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Home, SquareTerminal } from "lucide-react";
+import { ChevronDown, ChevronRight, Home, SquareTerminal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,15 +12,17 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
+  useSidebar,
 } from "../ui/sidebar";
 import { Club } from "@/types/club";
 import { useParams, useRouter } from "next/navigation";
-import { getFirstCharacter } from "@/utils/stringUtils";
 import Link from "next/link";
 import ClubSwitcher from "./ClubSwitcher";
 import { notices } from "@/data/notices";
@@ -53,6 +55,7 @@ const clubs: Club[] = [
 
 const ClubSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   const router = useRouter();
+  const { state } = useSidebar();
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -60,22 +63,22 @@ const ClubSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
         <ClubSwitcher clubs={clubs} />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" className="h-16" asChild>
-              <Link href="#">
-                <Home
-                  className="ml-2"
-                  style={{ width: "24px", height: "24px" }}
-                />
-                <span className="font-pretendard-semiBold text-xl ml-2">
-                  모집 공고
-                </span>
-              </Link>
-            </SidebarMenuButton>
-            <SidebarSeparator />
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton className="h-16" tooltip="모집 공고" asChild>
+                <Link href="#">
+                  <Home />
+
+                  <span className="font-pretendard-semiBold text-xl ml-2">
+                    모집 공고
+                  </span>
+                </Link>
+              </SidebarMenuButton>
+              <SidebarSeparator />
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
         <NoticeManager notices={notices} />
       </SidebarContent>
       <SidebarFooter>

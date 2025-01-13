@@ -11,6 +11,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "../ui/sidebar";
 import {
   Collapsible,
@@ -20,11 +21,15 @@ import {
 import Link from "next/link";
 
 const NoticeManager = ({ notices }: { notices: Notice[] }) => {
+  const { state } = useSidebar();
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="font-pretendard-semiBold text-sm">
-        공고 관리
-      </SidebarGroupLabel>
+      {state === "expanded" ? (
+        <SidebarGroupLabel className="font-pretendard-semiBold text-sm">
+          공고 관리
+        </SidebarGroupLabel>
+      ) : null}
+
       <SidebarMenu>
         {notices.map((notice) => (
           <Collapsible
