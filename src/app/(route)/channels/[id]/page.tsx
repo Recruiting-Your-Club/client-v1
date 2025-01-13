@@ -1,18 +1,9 @@
-import React from "react";
-import Mainboard from "@/components/dashboard/Mainboard";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import ClubSidebar from "@/components/sidebar/ClubSidebar";
+import TotalNoticeCard from "@/components/card/TotalNoticeCard";
 
-const clubDashBoard = ({ children }: { children: React.ReactNode }) => {
+export default function DashboardPage() {
   return (
-    <SidebarProvider>
-      <ClubSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <main>
+      <TotalNoticeCard />
+    </main>
   );
-};
-
-export default clubDashBoard;
+}

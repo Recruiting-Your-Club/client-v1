@@ -19,8 +19,10 @@ export interface Notice {
  * 모집 공고 시 현재 공고 카드 표시해주는 타입
  */
 export interface NoticeCardProps {
+  id: number;
   title: string;
   date: string;
+  progress: string;
   stats: {
     total: number;
     inProgress: number;

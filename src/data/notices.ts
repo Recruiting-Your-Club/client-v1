@@ -10,7 +10,7 @@ import {
   Speech,
   UserRoundCheck,
 } from "lucide-react";
-import { Notice } from "@/types/notice";
+import { Notice, NoticeCardProps } from "@/types/notice";
 
 export const notices: Notice[] = [
   {
@@ -60,5 +60,32 @@ export const notices: Notice[] = [
       { title: "면접 질문 정리", url: "#" },
       { title: "면접 타임 별 평가표 조회", url: "#" },
     ],
+  },
+];
+
+export const noticeCardProps: NoticeCardProps[] = [
+  {
+    id: 1,
+    title: "[IT/소프트웨어] 동아리 En# 신입 부원 모집",
+    date: "25.01.16",
+    progress: "모집 진행 중",
+    stats: {
+      total: 1,
+      inProgress: 1,
+      completed: 0,
+      joined: 0,
+    },
+  },
+  {
+    id: 2,
+    title: "test",
+    date: "25.01.31",
+    progress: "모집 진행 중",
+    stats: {
+      total: 0,
+      inProgress: 0,
+      completed: 0,
+      joined: 0,
+    },
   },
 ];
