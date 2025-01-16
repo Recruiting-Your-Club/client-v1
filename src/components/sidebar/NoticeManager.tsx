@@ -42,7 +42,9 @@ const NoticeManager = ({ notices }: { notices: Notice[] }) => {
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={notice.title}>
                   {notice.icon && <notice.icon />}
-                  <span>{notice.title}</span>
+                  <span className="font-pretendard-regular">
+                    {notice.title}
+                  </span>
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
@@ -52,7 +54,9 @@ const NoticeManager = ({ notices }: { notices: Notice[] }) => {
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
                         <Link href={subItem.url}>
-                          <span>{subItem.title}</span>
+                          <span className="font-pretendard-regular">
+                            {subItem.title}
+                          </span>
                         </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>

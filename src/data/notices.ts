@@ -10,7 +10,7 @@ import {
   Speech,
   UserRoundCheck,
 } from "lucide-react";
-import { Notice, NoticeCardProps } from "@/types/notice";
+import { Notice, NoticeCardProps, NoticeInfoProps } from "@/types/notice";
 
 export const notices: Notice[] = [
   {
@@ -89,3 +89,11 @@ export const noticeCardProps: NoticeCardProps[] = [
     },
   },
 ];
+
+export const INITIAL_NOTICE_FORM_DATA: NoticeInfoProps = {
+  title: "",
+  startDate: "",
+  endDate: "",
+  details: "",
+  question: [],
+};

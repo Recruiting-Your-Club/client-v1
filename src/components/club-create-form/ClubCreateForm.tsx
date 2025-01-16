@@ -19,7 +19,7 @@ const initialFormData: FormData = {
 };
 
 const ClubCreateForm = () => {
-  //동아리 생성 step 관리리
+  //동아리 생성 step 관리
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
 
