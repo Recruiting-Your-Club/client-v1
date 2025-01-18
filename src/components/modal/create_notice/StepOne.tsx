@@ -53,6 +53,11 @@ const StepOne = ({
           <p className="text-red-500 text-sm mt-1">{errors.date}</p>
         )}
       </div>
+      <div>
+        <Label className="flex item-center mb-3 font-pretendard-semiBold">
+          상세 정보 <span className="text-red-500 ml-1">*</span>
+        </Label>
+      </div>
     </div>
   );
 };
