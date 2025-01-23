@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';  
 
+// 검색 입력창을 렌더링하는 컴포넌트
 const SearchBar: React.FC = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [searchText, setSearchText] = useState('');

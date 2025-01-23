@@ -1,10 +1,9 @@
+
+
 import React from "react";
+import { DetailHeaderProps } from "@/types/shared";  
 
-interface DetailHeaderProps {
-  headerData: string[];  
-  onHeaderClick?: (index: number) => void;  
-}
-
+//세부 섹션으로 스크롤 이동을 위한 헤더 버튼을 렌더링하는 컴포넌트
 const DetailHeader: React.FC<DetailHeaderProps> = ({ headerData, onHeaderClick }) => {
   return (
     <div className="flex w-full border border-gray-300 bg-white">

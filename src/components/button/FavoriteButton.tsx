@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../ui/button";
 
 interface FavoriteButtonProps {
   id: string;
@@ -14,9 +15,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
     <button
       className={`absolute top-4 right-4 p-2 rounded-full shadow-lg transition-colors duration-300 ${
         isFavorited ? "bg-yellow-400" : "bg-gray-300"
-      }`}
-      onClick={onClick}
-    >
+      }`} onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

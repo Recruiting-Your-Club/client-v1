@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
-import GridCell from '../grid/GridCell';
-import gridItems from '../../data/clubData'; 
+import React, { useState } from "react";
+import GridCell from "../grid/GridCell";
+import PaginationComponent from "../pagination/Pagination";
+import gridItems from "../../data/clubData";
+import { FavoritesProps } from "@/types/club";
 
-const GridLayout: React.FC = () => {
+//GridCell을 그리드 형태로 렌더링하는 레이아웃 컴포넌트 (필터링, 즐겨찾기, 페이징 기능 포함)
+const GridLayout: React.FC<FavoritesProps> = ({
+  selectedMajors,
+  favorites,
+  onToggleFavorite,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
  
+  const filteredItems = gridItems.filter(
+    (item) => selectedMajors.length === 0 || selectedMajors.includes(item.major)
+  );
+ 
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  if (currentPage > totalPages && totalPages > 0) {
+    setCurrentPage(totalPages);
+  }
+  if (currentPage < 1) {
+    setCurrentPage(1);
+  }
+ 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = gridItems.slice(indexOfFirstItem, indexOfLastItem);
- 
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
- 
-  const totalPages = Math.ceil(gridItems.length / itemsPerPage);
 
   return (
-    <div className="p-9 w-full min-h-screen"> 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+    <div className="p-9 w-full min-h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-[130px] w-full">
         {currentItems.map((item, index) => (
           <GridCell
             key={index}
@@ -26,50 +43,25 @@ const GridLayout: React.FC = () => {
             imageSrc={item.imageSrc}
             logoSrc={item.logoSrc}
             title={item.title}
-            description={item.description} 
+            description={item.description}
             tag={item.tag}
             school={item.school}
             daysLeft={item.daysLeft}
+            isFavorited={favorites.includes(item.id)}
+            onToggleFavorite={onToggleFavorite}
           />
         ))}
       </div>
- 
-      <div className="flex justify-center mt-6 space-x-2">
-        {/* 이전 버튼 */}
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
-            currentPage === 1 ? 'bg-gray-300' : 'bg-[#02255A] text-white'
-          }`}
-        >
-          이전
-        </button>
-
-        {/* 페이지 번호 */}
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={`px-3 py-1 rounded ${
-              currentPage === index + 1 ? 'bg-[#ffffff] text-black' : 'bg-gray-200'
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-
-        {/* 다음 버튼 */}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded ${
-            currentPage === totalPages ? 'bg-gray-300' : 'bg-[#02255A] text-white'
-          }`}
-        >
-          다음
-        </button>
-      </div>
+      {filteredItems.length > 0 && (
+        <div className="pt-[200px]">
+          <PaginationComponent
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            totalItems={filteredItems.length}  
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,21 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import FavoriteButton from "../button/FavoriteButton";
-
-interface GridCellProps {
-  id: string;
-  imageSrc: string;
-  logoSrc: string;
-  title: string;
-  daysLeft: string;
-  description: string[];
-  school: string;
-  tag: string;
-  isFavorited: boolean;  
-  onToggleFavorite: (id: string) => void;  
-}
-
-const GridCell: React.FC<GridCellProps> = ({
+import { ClubProps } from "@/types/club";
+import { Button } from "../ui/button";
+import {TextLabel} from "@/components/label/TextLabel";  
+ 
+//각 공고 정보를 보여주는 셀 컴포넌트
+const GridCell: React.FC<ClubProps> = ({
   id,
   imageSrc,
   logoSrc,
@@ -82,27 +73,30 @@ const GridCell: React.FC<GridCellProps> = ({
 
         {/* 즐겨찾기 버튼 */}
         <FavoriteButton
-          isFavorited={isFavorited}  
-          onClick={() => onToggleFavorite(id)}  
+          isFavorited={isFavorited}
+          onClick={() => onToggleFavorite(id)}
         />
 
         {/* 텍스트 설명 영역 */}
         <div className="flex-1 flex flex-col justify-start mt-5 mb-5 ml-5 mr-6">
-          <h3 className="text-md font-semibold mb-1">{title}</h3>
-          <div className="flex flex-wrap items-center gap-2">
+          <h3 className="text-lg font-pretendard-bold mb-1 ml-[2px]">{title}</h3>
+          <div className="flex flex-wrap items-center gap-2 ml-1">
             <div className="text-sm text-gray-500">{daysLeft}</div>
           </div>
 
-          {/* 추가 텍스트 영역 */}
+          <div className="pt-3 pb-3">
+          <TextLabel
+              text={tag}
+            />
+            </div>
+          {/* 추가 텍스트 영역 (hover 시에만 표시) */}
           {isHovered && (
             <div className="flex flex-col items-start gap-3 mt-1">
-              <span className="block text-base text-green-600 font-medium font-bold">
-                {tag}
-              </span>
-
               <div className="w-full border-b border-gray-300" />
 
-              <span className="block text-base font-medium">{school}</span>
+              <span className="block text-base font-pretendard-regular">
+                {school}
+              </span>
               <div className="flex flex-col space-y-[3px]">
                 {description.map((text, index) => (
                   <span key={index} className="text-sm text-gray-500">
@@ -118,9 +112,9 @@ const GridCell: React.FC<GridCellProps> = ({
         {isHovered && (
           <div className="absolute bottom-3.5 left-5 right-5 flex flex-col items-center gap-3">
             <Link href={`club-detail/${id}`}>
-              <button className="bg-[#02255A] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#014080] transition">
+              <Button className="px-4 py-2  text-white hover:bg-[#5A45E0]">
                 공고 바로가기
-              </button>
+              </Button>
             </Link>
           </div>
         )}
