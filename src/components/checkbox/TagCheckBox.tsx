@@ -1,13 +1,13 @@
-import React, { ChangeEvent, useState, FormEvent, useCallback } from 'react';
+"use client";
 
+import React, { ChangeEvent, useState, FormEvent, useCallback } from "react";
 
-interface TagProps{
-  title:string;
+interface TagProps {
+  title: string;
 }
-const major = ['프로그래밍', '탁구', '축구', '피구', '발야구'];
+const major = ["프로그래밍", "탁구", "축구", "피구", "발야구"];
 
-
-const TagCheckBox: React.FC<TagProps> = ({title}) => {
+const TagCheckBox: React.FC<TagProps> = ({ title }) => {
   const [majorCheckedList, setMajorCheckedList] = useState<string[]>([]);
 
   const handleCheckedMajor = (value: string, isChecked: boolean) => {
@@ -18,13 +18,19 @@ const TagCheckBox: React.FC<TagProps> = ({title}) => {
     }
   };
 
-  const handleOnChangeCheckMajor = (e: ChangeEvent<HTMLInputElement>, value: string) => {
+  const handleOnChangeCheckMajor = (
+    e: ChangeEvent<HTMLInputElement>,
+    value: string
+  ) => {
     handleCheckedMajor(value, e.target.checked);
   };
 
-  const handleOnSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  }, [majorCheckedList]);
+  const handleOnSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+    },
+    [majorCheckedList]
+  );
 
   return (
     <div className="bg-white p-4 border rounded-lg flex flex-col h-full">
@@ -33,7 +39,11 @@ const TagCheckBox: React.FC<TagProps> = ({title}) => {
         <form onSubmit={handleOnSubmit}>
           <div className="flex flex-col space-y-4">
             {major.map((item) => (
-              <label key={item} htmlFor={item} className="flex items-center space-x-2">
+              <label
+                key={item}
+                htmlFor={item}
+                className="flex items-center space-x-2"
+              >
                 <input
                   type="checkbox"
                   id={item}

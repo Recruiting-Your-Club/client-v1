@@ -13,6 +13,8 @@ import {
 } from "../../ui/dialog";
 import { toast } from "@/hooks/use-toast";
 import StepOne from "./StepOne";
+import { Button } from "@/components/ui/button";
+import StepTwo from "./StepTwo";
 
 const CreateNoticeModal = ({
   isOpen,
@@ -29,10 +31,15 @@ const CreateNoticeModal = ({
   const handleNextStep = () => {
     setShowErrors(true);
     if (step === 1) {
+      const isValide = validateStepOne();
+      if (isValide) {
+        setStep(step + 1);
+        setShowErrors(false);
+      }
     }
   };
 
-  const validateStepOne = () => {
+  const validateStepOne = (): boolean => {
     const { title, startDate, endDate, details } = formData;
     if (!title.trim() || !startDate || !endDate || !details.trim()) {
       toast({
@@ -45,12 +52,16 @@ const CreateNoticeModal = ({
     return true;
   };
 
+  //자기소개서 문항 에러사항 검증 로직 (나중에 추가해야됨)
   const validateStepTwo = () => {};
 
   const handlePrevStep = () => {
     setStep(step - 1);
     setShowErrors(false);
   };
+
+  //최종 제출 로직
+  const handleSubmit = () => {};
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -71,8 +82,20 @@ const CreateNoticeModal = ({
             showError={showErrors}
           />
         ) : (
-          <div></div>
+          <StepTwo
+            formData={formData}
+            onFormChange={handleFormChange}
+            showError={showErrors}
+          />
         )}
+        <div className="mt-4 flex justify-between">
+          {step === 2 && <Button onClick={handlePrevStep}>이전</Button>}
+          {step === 1 ? (
+            <Button onClick={handleNextStep}>다음</Button>
+          ) : (
+            <Button>제출</Button>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
