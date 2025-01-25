@@ -15,7 +15,7 @@ const TagCheckBox: React.FC<TagProps> = ({ title, major, onChange }) => {
   };
 
   useEffect(() => {
-    console.log("Updated majorCheckedList:", majorCheckedList);  
+    console.log("majorCheckList 수정 :", majorCheckedList);  
     onChange(majorCheckedList);
   }, [majorCheckedList, onChange]);
 

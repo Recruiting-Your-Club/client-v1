@@ -14,14 +14,14 @@ const ClubDetailPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="bg-white min-h-screen">
-      <MainHeader />
-      <main className="flex flex-col items-center justify-start mt-6">
+      <MainHeader /> 
       <FavoritesProvider> 
-        <div className="w-full max-w-6xl bg-white rounded-lg p-4">
-          <ClubDetailContent club={club} />
-        </div>
+        <main className="flex flex-col items-center justify-start mt-6">
+          <div className="w-full max-w-6xl bg-white rounded-lg p-4">
+            <ClubDetailContent club={club} />
+          </div> 
+        </main> 
       </FavoritesProvider>
-      </main>
     </div>
   );
 };

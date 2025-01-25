@@ -54,8 +54,7 @@ const RecruitmentDetailCard: React.FC<RecruitmentDetailCardProps> = ({
           <h3 className="text-2xl font-pretendard-extraBold mb-2">{title}</h3>
           <p className="text-lg font-pretendard-regular text-gray-500 ml-1">
             {daysLeft}
-          </p> 
-          
+          </p>  
           <div className={`mt-2 ${!showButton ? "mb-10" : "mb-4"}`}>
             <TextLabel text={tag} />
           </div>

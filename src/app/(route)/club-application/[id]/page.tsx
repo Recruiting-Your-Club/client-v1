@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import ClubApplicationContent from "@/components/content/ClubApplicationContent";
 import clubData from "@/data/clubData";

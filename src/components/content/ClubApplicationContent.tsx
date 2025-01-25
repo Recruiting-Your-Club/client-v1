@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useApplication } from "@/features/useApplication";
 import RecruitmentDetailCard from "@/components/card/detail/RecruitmentDetailCard";
@@ -51,6 +53,7 @@ export const ClubApplicationContent: React.FC<ClubApplicationContentProps> = ({
           </Button>
         </Link>
       </div>
+      
     </div>
   );
 };

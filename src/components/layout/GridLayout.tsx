@@ -34,7 +34,7 @@ const GridLayout: React.FC<FavoritesProps> = ({
   };
 
   return (
-    <div className="p-9 w-full min-h-screen">
+    <div className="w-full min-h-screen">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-[130px] w-full">
         {currentItems.map((item, index) => (
           <GridCell
@@ -53,7 +53,7 @@ const GridLayout: React.FC<FavoritesProps> = ({
         ))}
       </div>
       {filteredItems.length > 0 && (
-        <div className="pt-[200px]">
+        <div className="pt-20">
           <PaginationComponent
             currentPage={currentPage}
             itemsPerPage={itemsPerPage}

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React from "react";
 import DetailHeader from "@/components/header/DetailHeader";
@@ -28,8 +28,8 @@ const ClubDetailContent = ({ club }) => {
          tag={club.tag}
          school={club.school}
          daysLeft={club.daysLeft}
-         isFavorited={favorites.includes(club.id)} // 즐겨찾기 여부 확인
-         onToggleFavorite={toggleFavorite} // 전역 상태의 toggleFavorite 전달
+         isFavorited={favorites.includes(club.id)}  
+         onToggleFavorite={toggleFavorite}  
          buttonText="지원하기"
          buttonLink={`/club-application/${club.id}`}
          showButton={true}
