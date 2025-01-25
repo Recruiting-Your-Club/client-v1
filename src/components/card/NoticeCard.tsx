@@ -11,12 +11,16 @@ const NoticeCard = ({
 }: {
   noticeCardProp: NoticeCardProps;
 }) => {
+  const title = noticeCardProp.title || "Loading...";
   return (
     <Card className="w-[400px] h-[200px] max-w-[500px] cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
       <CardHeader className="h-[130px] flex flex-col justify-between">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-pretendard-semiBold max-w-[70%]">
-            {noticeCardProp.title}
+          <h3
+            className="text-xl font-pretendard-semiBold"
+            style={{ width: "250px" }}
+          >
+            {title}
           </h3>
           <Badge
             variant="secondary"

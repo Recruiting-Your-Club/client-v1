@@ -46,7 +46,8 @@ export interface NoticeInfoProps {
   startDate: string;
   endDate: string;
   details: string;
-  question: Array<{ question: string; maxWords: string }>;
+  images: File[];
+  question: Array<{ question: string; maxWords: number }>;
 }
 
 export interface DefaultFormData {
@@ -54,6 +55,7 @@ export interface DefaultFormData {
   startDate: string;
   endDate: string;
   details: string;
+  images: File[];
 }
 
 /**
@@ -63,5 +65,20 @@ export interface NoticeInfoStepOne {
   formData: DefaultFormData;
   onFormChange: (newData: Partial<DefaultFormData>) => void;
   onNext: () => void;
+  showError: boolean;
+}
+
+/**
+ * Step Two 에서 받을 정보보
+ */
+export interface NoticeInfoStepTwo {
+  formData: {
+    question: Array<{ question: string; maxWords: number }>;
+  };
+  onFormChange: (
+    newData: Partial<{
+      question: Array<{ question: string; maxWords: number }>;
+    }>
+  ) => void;
   showError: boolean;
 }

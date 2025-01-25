@@ -1,3 +1,4 @@
+"use client";
 import React /*useEffect*/ from "react";
 import SearchBar from "../search/SearchBar";
 import Link from "next/link";

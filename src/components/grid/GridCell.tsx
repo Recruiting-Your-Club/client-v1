@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
 
 interface GridCellProps {
-  id: string;  
+  id: string;
   imageSrc: string;
   logoSrc: string;
   title: string;
   daysLeft: string;
   description: string[];
-  school: string; 
+  school: string;
   tag: string;
 }
 
@@ -19,7 +21,7 @@ const GridCell: React.FC<GridCellProps> = ({
   title,
   daysLeft,
   description,
-  school, 
+  school,
   tag,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -31,25 +33,25 @@ const GridCell: React.FC<GridCellProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        height: '30vh',
+        height: "30vh",
       }}
     >
       <div
         className={`bg-white border border-gray-300 rounded-lg flex flex-col cursor-pointer transition-all duration-300 ${
-          isHovered ? 'absolute top-0 left-0 w-full z-10 shadow-lg' : ''
+          isHovered ? "absolute top-0 left-0 w-full z-10 shadow-lg" : ""
         }`}
         style={{
-          height: isHovered ? '60vh' : '30vh',
-          position: isHovered ? 'absolute' : 'relative',
+          height: isHovered ? "60vh" : "30vh",
+          position: isHovered ? "absolute" : "relative",
         }}
       >
         {/* 이미지 영역 */}
         <div className="relative w-full">
           <div
             className={`w-full transition-all duration-300 ${
-              isHovered ? 'h-80' : 'h-40'
+              isHovered ? "h-80" : "h-40"
             }`}
-            style={{ aspectRatio: '16 / 9' }}
+            style={{ aspectRatio: "16 / 9" }}
           >
             <img
               src={imageSrc}
@@ -62,10 +64,10 @@ const GridCell: React.FC<GridCellProps> = ({
           <div
             className="absolute bottom-0 left-5 bg-white flex items-center justify-center"
             style={{
-              width: '40%',
-              height: '50px',
-              borderTopLeftRadius: '8px',
-              borderTopRightRadius: '8px',
+              width: "40%",
+              height: "50px",
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px",
             }}
           >
             <img
@@ -79,7 +81,7 @@ const GridCell: React.FC<GridCellProps> = ({
         {/* 즐겨찾기 */}
         <button
           className={`absolute top-2 right-2 p-2 rounded-full shadow-lg transition-colors duration-300 ${
-            isFavorited ? 'bg-yellow-400' : 'bg-gray-300'
+            isFavorited ? "bg-yellow-400" : "bg-gray-300"
           }`}
           onClick={(e) => {
             e.stopPropagation();
@@ -106,7 +108,9 @@ const GridCell: React.FC<GridCellProps> = ({
           {/* 추가 텍스트 영역 */}
           {isHovered && (
             <div className="flex flex-col items-start gap-3 mt-1">
-              <span className="block text-base text-green-600 font-medium font-bold">{tag}</span>
+              <span className="block text-base text-green-600 font-medium">
+                {tag}
+              </span>
 
               <div className="w-full border-b border-gray-300" />
 

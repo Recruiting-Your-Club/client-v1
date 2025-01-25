@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import GridCell from '../grid/GridCell';
-import gridItems from '../../data/clubData'; 
+"use client";
+
+import React, { useState } from "react";
+import GridCell from "../grid/GridCell";
+import gridItems from "../../data/clubData";
 
 const GridLayout: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +32,7 @@ const GridLayout: React.FC = () => {
             imageSrc={item.imageSrc}
             logoSrc={item.logoSrc}
             title={item.title}
-            description={item.description} 
+            description={item.description}
             tag={item.tag}
             school={item.school}
             daysLeft={item.daysLeft}
@@ -45,7 +47,7 @@ const GridLayout: React.FC = () => {
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
           className={`px-4 py-2 rounded ${
-            currentPage === 1 ? 'bg-gray-300' : 'bg-[#02255A] text-white'
+            currentPage === 1 ? "bg-gray-300" : "bg-[#02255A] text-white"
           }`}
         >
           이전
@@ -57,7 +59,9 @@ const GridLayout: React.FC = () => {
             key={index}
             onClick={() => handlePageChange(index + 1)}
             className={`px-3 py-1 rounded ${
-              currentPage === index + 1 ? 'bg-[#ffffff] text-black' : 'bg-gray-200'
+              currentPage === index + 1
+                ? "bg-[#ffffff] text-black"
+                : "bg-gray-200"
             }`}
           >
             {index + 1}
@@ -69,7 +73,9 @@ const GridLayout: React.FC = () => {
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={`px-4 py-2 rounded ${
-            currentPage === totalPages ? 'bg-gray-300' : 'bg-[#02255A] text-white'
+            currentPage === totalPages
+              ? "bg-gray-300"
+              : "bg-[#02255A] text-white"
           }`}
         >
           다음

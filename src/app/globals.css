@@ -14,22 +14,22 @@ body {
 
 @font-face {
   font-family: "pretendard-bold";
-  src: url("../fonts/Pretendard-Bold.woff");
+  src: url("../fonts/Pretendard-Bold.subset.woff2");
 }
 
 @font-face {
   font-family: "pretendard-regular";
-  src: url("../fonts/Pretendard-Regular.woff");
+  src: url("../fonts/Pretendard-Regular.subset.woff2");
 }
 
 @font-face {
   font-family: "pretendard-extraBold";
-  src: url("../fonts/Pretendard-ExtraBold.woff");
+  src: url("../fonts/Pretendard-ExtraBold.subset.woff2");
 }
 
 @font-face {
   font-family: "pretendard-semiBold";
-  src: url("../fonts/Pretendard-SemiBold.woff");
+  src: url("../fonts/Pretendard-SemiBold.subset.woff2");
 }
 
 @layer base {

@@ -95,5 +95,6 @@ export const INITIAL_NOTICE_FORM_DATA: NoticeInfoProps = {
   startDate: "",
   endDate: "",
   details: "",
-  question: [],
+  images: [] as File[],
+  question: [{ question: "", maxWords: 0 }],
 };
