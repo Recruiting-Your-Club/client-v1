@@ -2,10 +2,10 @@
 <br>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c0bda7ef-373e-45de-b32e-b892ca81460b" 
-       alt="ATS 서비스 이미지" width="150px">
+       alt="로고 이미지" width="150px">
 </p>
 
-<h2 align="center">ATS 서비스 기반 동아리 모집 프로세스</h2>
+<h2 align="center">동아리 모집 프로세스 관리 서비스</h2>
 
 <br><br>
 
@@ -38,7 +38,7 @@
 - 지원자의 기본 정보, 자기소개, 추가 서류 등이 여러 곳에 저장되어 있어 이를 한 번에 확인하기 어려움.
 - 운영진 간 지원자 정보를 공유할 때 일관된 관리 체계가 없어 혼선이 발생함.
 
-이러한 문제를 해결하기 위해, ATS 서비스 기반의 동아리 모집 프로세스인 RYC를 개발하게 되었습니다.
+이러한 문제를 해결하기 위해, 동아리 모집 프로세스 관리 서비스인 RYC를 개발하게 되었습니다.
 
 <br><br>
  
